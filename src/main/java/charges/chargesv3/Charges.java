@@ -36,8 +36,8 @@ public class Charges {
     }
     public double getElectricForce(Charges c1, Charges c2, double r)
     {
-        r = distance;
-        return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(r, 2));
+        distance = r;
+        return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2));
     }
     public double getCurrentChargeVelocity()
     {
