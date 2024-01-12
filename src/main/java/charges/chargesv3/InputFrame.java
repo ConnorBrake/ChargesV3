@@ -9,9 +9,12 @@ package charges.chargesv3;
  * @author CoBra1341
  */
 public class InputFrame extends javax.swing.JFrame {
-    private double cOne;
-    private double cTwo;
-    private double dist;
+    private static double cOne;
+    private static double cTwo;
+    private static double dist;
+    private double inputOne = 0;
+    private double inputTwo = 0;
+    private double inputThree = 0;
     
     OutputFrame outputFrame = new OutputFrame();
     /**
@@ -137,7 +140,7 @@ public class InputFrame extends javax.swing.JFrame {
                     .addComponent(chargeOneInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorOne, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,6 +159,7 @@ public class InputFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void chargeOneInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargeOneInputActionPerformed
@@ -172,80 +176,54 @@ public class InputFrame extends javax.swing.JFrame {
 
     private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
         // TODO add your handling code here:
-        
-        double inputOne = 0;
-        double inputTwo = 0;
-        double inputThree = 0;
         try{
             inputOne = Double.parseDouble(chargeOneInput.getText());
+            errorOne.setVisible(false);
         }
         catch (NumberFormatException e){
             inputOne = 0;
             errorOne.setVisible(true);
-            if(inputTwo <= 0)
-            {
-                inputTwo = 0;
-                errorTwo.setVisible(true);
-            }
-            if(inputThree <= 0)
-            {
-                inputThree = 0;
-                errorThree.setVisible(true);
-                return;
-            }
-        getChargeInputOne(inputOne);
-        errorOne.setVisible(false);
+        }
+        if(inputOne <= 0)
+        {
+            errorOne.setVisible(true);
         }
         try{
             inputTwo = Double.parseDouble(chargeTwoInput.getText());
+            errorTwo.setVisible(false);
         }
         catch (NumberFormatException e){
             inputTwo = 0;
-            if(inputTwo <= 0)
-            {
-                inputTwo = 0;
-                errorTwo.setVisible(true);
-            }
-            if(inputThree <= 0)
-            {
-                inputThree = 0;
-                errorThree.setVisible(true);
-                return;
-            }
+            errorTwo.setVisible(true);
         }
-        getChargeInputTwo(inputTwo);
-        errorTwo.setVisible(false);
+        if(inputTwo <= 0)
+        {
+            errorTwo.setVisible(true);
+        }
         try{
             inputThree = Double.parseDouble(distanceInput.getText());
+            errorThree.setVisible(false);
         }
         catch (NumberFormatException e){
             inputThree = 0;
-            if(inputThree <= 0)
-            {
-                inputThree = 0;
-                errorThree.setVisible(true);
-                return;
-            }
+            errorThree.setVisible(true);
         }
-        getDistanceInput(inputThree);
-        errorThree.setVisible(false);
+        if(inputThree <= 0)
+        {
+            errorThree.setVisible(true);
+        }
+        if(inputThree <= 0 || inputTwo <= 0 || inputOne <= 0)
+        {
+            return;
+        }
 
         this.setVisible(false);
         outputFrame.setVisible(true);
+        OutputFrame.forceOnChargeOneOutput.setText(Double.toString(inputOne));
+        OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(inputTwo));
+        OutputFrame.distanceBetweenChargesOutput.setText(Double.toString(inputThree));
     }//GEN-LAST:event_runSimulationActionPerformed
-    
-    public void getChargeInputOne(double a)
-    {
-        cOne = a;
-    }
-    public void getChargeInputTwo(double b)
-    {
-        cTwo = b;
-    }
-    public void getDistanceInput(double c)
-    {
-        dist = c;
-    }
+    //Varible Transfer Methods
     
     private void errorTwoComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_errorTwoComponentHidden
         // TODO add your handling code here:
