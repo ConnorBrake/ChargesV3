@@ -9,12 +9,12 @@ package charges.chargesv3;
  * @author CoBra1341
  */
 public class InputFrame extends javax.swing.JFrame {
-    private static double cOne;
-    private static double cTwo;
-    private static double dist;
-    private static double inputOne = 0;
-    private static double inputTwo = 0;
+    public static double inputOne;
+    public static double inputTwo;
     private static double inputThree = 0;
+    
+    Charges c1 = new Charges(0, 0, 0);
+    Charges c2 = new Charges(0, 0, 0);
     
     OutputFrame outputFrame = new OutputFrame();
     /**
@@ -139,7 +139,7 @@ public class InputFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,18 +147,18 @@ public class InputFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorOne, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(chargeTwoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorThree, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
@@ -224,16 +224,16 @@ public class InputFrame extends javax.swing.JFrame {
         {
             return;
         }
-
         this.setVisible(false);
         outputFrame.setVisible(true);
-        Charges c1 = new Charges(inputOne, 0, 0);
-        Charges c2 = new Charges(inputTwo, 0, 0);
-        OutputFrame.forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2, inputThree)));
-        OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2, inputThree)));
+        c1.setCharge(inputOne);
+        c2.setCharge(inputTwo);
+        Charges.setChargeDistance(inputThree);
+        
+        OutputFrame.forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
+        OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         OutputFrame.distanceBetweenChargesOutput.setText(Double.toString(inputThree));
     }//GEN-LAST:event_runSimulationActionPerformed
-    //Varible Transfer Methods
     
     private void errorTwoComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_errorTwoComponentHidden
         // TODO add your handling code here:

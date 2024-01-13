@@ -34,9 +34,8 @@ public class Charges {
     {
         return mass;
     }
-    public double getElectricForce(Charges c1, Charges c2, double r)
+    public double getElectricForce(Charges c1, Charges c2)
     {
-        distance = r;
         return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2));
     }
     public double getCurrentChargeVelocity()
@@ -45,15 +44,14 @@ public class Charges {
     }
     public double getNewChargeAcceleration(Charges c1, Charges c2)
     {
-        double r = distance;
-        return ((kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(r, 2))) / getMass();
+        return ((kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2))) / getMass();
     }
-    public double getNewChargeVelocity(Charges c1,  Charges c2, double r, double v, double t)
+    public double getNewChargeVelocity(Charges c1,  Charges c2, double t)
     {
-        velocity = getNewChargeAcceleration(c1, c2) * t + getCurrentChargeVelocity();
+        velocity = (getNewChargeAcceleration(c1, c2) * t + getCurrentChargeVelocity());
         return velocity; 
     }
-    public double getNewDistance(Charges c1, Charges c2, double t)
+    public static double getNewDistance(Charges c1, Charges c2, double t)
     {
         double distanceOfChargeOne = (c1.getCurrentChargeVelocity() * t) + (0.5 * c1.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2));
         double distanceOfChargeTwo = (c2.getCurrentChargeVelocity() * t) + (0.5 * c2.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2));
@@ -66,6 +64,16 @@ public class Charges {
     {
         distance = r;
         return distance;
+    }
+    public double setCharge(double c) //Must be positive and not exactly 0
+    {
+        charge = c;
+        return charge;
+    }
+    public double setMass()
+    {
+        mass = (getCharge() / eValue) * (1.67*Math.pow(10, -27));
+        return mass;
     }
 //    public static double setChargeVelocity(Charges c1, Charges c2, double r, double m) //Must use after charge instatiation and initialization
 //    {
