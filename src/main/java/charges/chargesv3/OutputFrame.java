@@ -174,39 +174,44 @@ public class OutputFrame extends javax.swing.JFrame {
     private void forwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardsTimeActionPerformed
         // TODO add your handling code here:
         time += 0.000000001;
+        c1.setCharge(InputFrame.inputOne);
+        c2.setCharge(InputFrame.inputTwo);
         c1.setMass();
         c2.setMass();
+        Charges.setChargeDistance(InputFrame.inputThree);
         
-        System.out.println(c1.getCharge());
         c1.getNewChargeVelocity(c1, c2, time);
-        c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewDistance(c1, c2, time);
+        c1.getNewChargeAcceleration(c1, c2, 1);
         c2.getNewChargeVelocity(c1, c2, time);
-        c2.getNewChargeAcceleration(c1, c2);
-        System.out.println(c2.getNewChargeAcceleration(c1, c2));
-        distanceBetweenChargesOutput.setText(Double.toString(c2.getNewDistance(c1, c2, time)));
+        c2.getNewChargeAcceleration(c1, c2, 1);
+        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+        System.out.println("*"+ c2.getNewDistance(c1, c2, time, 1) + " *" + time);
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
         // TODO add your handling code here:
+        if(time > 0)
+        {
         time -= 0.000000001;
+        c1.setCharge(InputFrame.inputOne);
+        c2.setCharge(InputFrame.inputTwo);
         c1.setMass();
         c2.setMass();
+        Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
         
-        System.out.println(c1.getCharge());
         c1.getNewChargeVelocity(c1, c2, time);
-        c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewDistance(c1, c2, time);
+        c1.getNewChargeAcceleration(c1, c2, 1);
         c2.getNewChargeVelocity(c1, c2, time);
-        c2.getNewChargeAcceleration(c1, c2);
-        System.out.println(c2.getNewChargeAcceleration(c1, c2));
-        distanceBetweenChargesOutput.setText(Double.toString(c2.getNewDistance(c1, c2, time)));
+        c2.getNewChargeAcceleration(c1, c2, 1);
+        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, -1)));
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+        System.out.println("*"+ c2.getNewDistance(c1, c2, time, -1) + " *" + time);
+        }
     }//GEN-LAST:event_backwardsTimeActionPerformed
 
     /**
