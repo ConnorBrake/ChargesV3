@@ -4,14 +4,18 @@
  */
 package charges.chargesv3;
 
+import java.util.ArrayList;
 /**
  *
  * @author CoBra1341
  */
 public class OutputFrame extends javax.swing.JFrame {
     public static double time = 0;
+    private static int distanceSearch = 0;
+    ArrayList<Double> distancesList = new ArrayList<>();
     Charges c1 = new Charges(InputFrame.inputOne, 0, 0);
     Charges c2 = new Charges(InputFrame.inputTwo, 0, 0);
+    
     /**
      * Creates new form OutputFrame
      */
@@ -167,50 +171,56 @@ public class OutputFrame extends javax.swing.JFrame {
 
     private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
         new InputFrame().setVisible(true);
     }//GEN-LAST:event_stopSimulationActionPerformed
 
     private void forwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardsTimeActionPerformed
         // TODO add your handling code here:
+        //Handles Number Outputs Forwards In Time
+        if(time == 0)
+        {
+            c1.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
+            distancesList.add(c1.getDistance());
+
+            c1.setCharge(InputFrame.inputOne);
+            c2.setCharge(InputFrame.inputTwo);
+            c1.setMass();
+            c2.setMass();
+        }
+        distanceSearch += 1;
+        System.out.println(distanceSearch);
         time += 0.000000001;
-        c1.setCharge(InputFrame.inputOne);
-        c2.setCharge(InputFrame.inputTwo);
-        c1.setMass();
-        c2.setMass();
-        Charges.setChargeDistance(InputFrame.inputThree);
         
         c1.getNewChargeVelocity(c1, c2, time);
-        c1.getNewChargeAcceleration(c1, c2, 1);
+        c1.getNewChargeAcceleration(c1, c2);
         c2.getNewChargeVelocity(c1, c2, time);
-        c2.getNewChargeAcceleration(c1, c2, 1);
-        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
+        c2.getNewChargeAcceleration(c1, c2);
+        distanceBetweenChargesOutput.setText(Double.toString(c1.getNewDistance(c1, c2, time, 1)));
+        distancesList.add(c1.getDistance());
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
-        System.out.println("*"+ c2.getNewDistance(c1, c2, time, 1) + " *" + time);
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
         // TODO add your handling code here:
+        //Handles Number Outputs Backwards In Time
         if(time > 0)
         {
-        time -= 0.000000001;
-        c1.setCharge(InputFrame.inputOne);
-        c2.setCharge(InputFrame.inputTwo);
-        c1.setMass();
-        c2.setMass();
-        Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
-        
-        c1.getNewChargeVelocity(c1, c2, time);
-        c1.getNewChargeAcceleration(c1, c2, 1);
-        c2.getNewChargeVelocity(c1, c2, time);
-        c2.getNewChargeAcceleration(c1, c2, 1);
-        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, -1)));
-        timeOutput.setText(Double.toString(time));
-        forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
-        forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
-        System.out.println("*"+ c2.getNewDistance(c1, c2, time, -1) + " *" + time);
+            if(distanceSearch > 0)
+            {
+                distancesList.remove(distanceSearch);
+                distanceSearch -= 1;
+                distancesList.get(distanceSearch);
+                distanceBetweenChargesOutput.setText(Double.toString(distancesList.get(distanceSearch)));
+                Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
+                
+                forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
+                forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+            }
+            time -= 0.000000001;
+            timeOutput.setText(Double.toString(time));
         }
     }//GEN-LAST:event_backwardsTimeActionPerformed
 
