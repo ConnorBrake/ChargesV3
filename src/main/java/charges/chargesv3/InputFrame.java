@@ -11,10 +11,7 @@ package charges.chargesv3;
 public class InputFrame extends javax.swing.JFrame {
     public static double inputOne;
     public static double inputTwo;
-    private static double inputThree = 0;
-    
-    Charges c1 = new Charges(0, 0, 0);
-    Charges c2 = new Charges(0, 0, 0);
+    public static double inputThree = 0;
     
     OutputFrame outputFrame = new OutputFrame();
     /**
@@ -224,15 +221,13 @@ public class InputFrame extends javax.swing.JFrame {
         {
             return;
         }
-        this.setVisible(false);
-        outputFrame.setVisible(true);
-        c1.setCharge(inputOne);
-        c2.setCharge(inputTwo);
-        Charges.setChargeDistance(inputThree);
+        this.dispose();
+        new OutputFrame().setVisible(true);
         
-        OutputFrame.forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
-        OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+        OutputFrame.forceOnChargeOneOutput.setText(Double.toString(inputOne));
+        OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(inputTwo));
         OutputFrame.distanceBetweenChargesOutput.setText(Double.toString(inputThree));
+        OutputFrame.timeOutput.setText(Double.toString(0));
     }//GEN-LAST:event_runSimulationActionPerformed
     
     private void errorTwoComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_errorTwoComponentHidden

@@ -13,6 +13,7 @@ public class Charges {
     private static double distance;
     private double velocity;
     private double mass;
+    private double direction;
     private double force;
     private static final double kValue = 9 * Math.pow(10, 9);
     private static final double eValue = 1.602 * Math.pow(10, -19);
@@ -26,6 +27,10 @@ public class Charges {
     }
     
     //Accessor Methods
+    public double getDirection()
+    {
+        return direction;
+    }
     public double getCharge()
     {
         return charge;
@@ -44,18 +49,27 @@ public class Charges {
     }
     public double getNewChargeAcceleration(Charges c1, Charges c2)
     {
-        return ((kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2))) / getMass();
+        return (getElectricForce(c1, c2)) / getMass();
     }
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t)
     {
-        velocity = (getNewChargeAcceleration(c1, c2) * t + getCurrentChargeVelocity());
+        velocity = (getNewChargeAcceleration(c1, c2) * t + ((getDistance() - distance) / t));
         return velocity; 
     }
-    public static double getNewDistance(Charges c1, Charges c2, double t)
+    public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
-        double distanceOfChargeOne = (c1.getCurrentChargeVelocity() * t) + (0.5 * c1.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2));
-        double distanceOfChargeTwo = (c2.getCurrentChargeVelocity() * t) + (0.5 * c2.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2));
-        distance = distanceOfChargeOne + distanceOfChargeTwo + distance;
+        double distanceOfChargeOne = a * ((c1.getCurrentChargeVelocity() * t) + (0.5 * c1.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
+        double distanceOfChargeTwo = a * ((c2.getCurrentChargeVelocity() * t) + (0.5 * c2.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
+        distance = (distanceOfChargeOne + distanceOfChargeTwo) + distance;
+        return distance;
+    }
+    public static double getDistance()
+    {
+        return distance;
+    }
+    public static double getPastDistance(Charges c1, Charges c2, double t, double a)
+    {
+        distance = distance - getNewDistance(c1, c2, t, a);
         return distance;
     }
     
