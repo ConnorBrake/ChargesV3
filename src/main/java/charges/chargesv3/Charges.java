@@ -67,11 +67,6 @@ public class Charges {
     {
         return distance;
     }
-    public static double getPastDistance(Charges c1, Charges c2, double t, double a)
-    {
-        distance = distance - getNewDistance(c1, c2, t, a);
-        return distance;
-    }
     
     //Mutator Methods
     public static double setChargeDistance(double r) //Must be positive and not exactly 0

@@ -43,41 +43,33 @@ public class InputFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         errorThree.setForeground(new java.awt.Color(255, 0, 51));
         errorThree.setText("(The Input Must Be A Positive (Not Zero) Number) ");
-        getContentPane().add(errorThree, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 707, 19));
 
         jLabel1.setText("Charge of Charge One (C):");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 151, 16));
 
         chargeOneInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chargeOneInputActionPerformed(evt);
             }
         });
-        getContentPane().add(chargeOneInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 105, -1));
 
         jLabel2.setText("Charge of Charge Two (C):");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 154, 20));
 
         chargeTwoInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chargeTwoInputActionPerformed(evt);
             }
         });
-        getContentPane().add(chargeTwoInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 105, -1));
 
         jLabel3.setText("Distance Between Charges (m):");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 16));
 
         distanceInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 distanceInputActionPerformed(evt);
             }
         });
-        getContentPane().add(distanceInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 105, -1));
 
         runSimulation.setText("Run Simulation");
         runSimulation.addActionListener(new java.awt.event.ActionListener() {
@@ -85,11 +77,9 @@ public class InputFrame extends javax.swing.JFrame {
                 runSimulationActionPerformed(evt);
             }
         });
-        getContentPane().add(runSimulation, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         errorOne.setForeground(new java.awt.Color(255, 0, 51));
         errorOne.setText("(The Input Must Be A Positive (Not Zero) Number) ");
-        getContentPane().add(errorOne, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 16));
 
         errorTwo.setForeground(new java.awt.Color(255, 0, 51));
         errorTwo.setText("(The Input Must Be A Positive (Not Zero) Number) ");
@@ -98,11 +88,73 @@ public class InputFrame extends javax.swing.JFrame {
                 errorTwoComponentHidden(evt);
             }
         });
-        getContentPane().add(errorTwo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 469, 18));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\SchoolThing2 (2).png")); // NOI18N
         jLabel4.setAlignmentX(0.5F);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 330, 120));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(runSimulation)
+                .addGap(301, 301, 301))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorOne)
+                    .addComponent(errorTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chargeOneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chargeTwoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel3)))
+                    .addComponent(errorThree, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chargeOneInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(chargeTwoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(errorOne, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(errorTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(errorThree, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(runSimulation)
+                .addContainerGap())
+        );
 
         pack();
         setLocationRelativeTo(null);
