@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class OutputFrame extends javax.swing.JFrame {
     public static double time = 0;
     private static int distanceSearch = 0;
+    private static int distanceSize = 0;
     ArrayList<Double> distancesList = new ArrayList<>();
     Charges c1 = new Charges(InputFrame.inputOne, 0, 0);
     Charges c2 = new Charges(InputFrame.inputTwo, 0, 0);
@@ -205,8 +206,8 @@ public class OutputFrame extends javax.swing.JFrame {
             chargeOne.setLocation(180, 240);
             chargeTwo.setLocation(400, 240);
         }
+        distanceSize = Double.toString(Charges.getDistance()).length();
         distanceSearch += 1;
-        System.out.println(distanceSearch);
         time += 0.000000001;
         
         c1.getNewChargeAcceleration(c1, c2);
@@ -219,7 +220,8 @@ public class OutputFrame extends javax.swing.JFrame {
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
-        
+        chargeOne.setLocation(10 * distanceSize, 240);
+        System.out.println(distanceSize);
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
