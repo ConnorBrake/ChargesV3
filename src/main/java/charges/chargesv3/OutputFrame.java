@@ -43,49 +43,46 @@ public class OutputFrame extends javax.swing.JFrame {
         forwardsTime = new javax.swing.JButton();
         backwardsTime = new javax.swing.JButton();
         stopSimulation = new javax.swing.JButton();
+        chargeTwo = new javax.swing.JLabel();
+        chargeOne = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Time (s):");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 41, -1, -1));
 
         jLabel2.setText("Force On Charge One (N):");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 41, -1, -1));
 
         jLabel3.setText("Force On Charge Two (N):");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 41, -1, -1));
 
         jLabel4.setText("Distance (m):");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
 
+        timeOutput.setEditable(false);
         timeOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timeOutputActionPerformed(evt);
             }
         });
-        getContentPane().add(timeOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 61, 161, -1));
 
+        distanceBetweenChargesOutput.setEditable(false);
         distanceBetweenChargesOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 distanceBetweenChargesOutputActionPerformed(evt);
             }
         });
-        getContentPane().add(distanceBetweenChargesOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 162, -1));
 
+        forceOnChargeOneOutput.setEditable(false);
         forceOnChargeOneOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forceOnChargeOneOutputActionPerformed(evt);
             }
         });
-        getContentPane().add(forceOnChargeOneOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 61, 160, -1));
 
+        forceOnChargeTwoOutput.setEditable(false);
         forceOnChargeTwoOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forceOnChargeTwoOutputActionPerformed(evt);
             }
         });
-        getContentPane().add(forceOnChargeTwoOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 61, 160, -1));
 
         forwardsTime.setText("Forwards Time (+1ns)");
         forwardsTime.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +90,6 @@ public class OutputFrame extends javax.swing.JFrame {
                 forwardsTimeActionPerformed(evt);
             }
         });
-        getContentPane().add(forwardsTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 332, -1, -1));
 
         backwardsTime.setText("Backwards Time (+1ns)");
         backwardsTime.addActionListener(new java.awt.event.ActionListener() {
@@ -101,15 +97,94 @@ public class OutputFrame extends javax.swing.JFrame {
                 backwardsTimeActionPerformed(evt);
             }
         });
-        getContentPane().add(backwardsTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 332, -1, -1));
 
+        stopSimulation.setBackground(new java.awt.Color(204, 0, 51));
         stopSimulation.setText("Stop Simulation");
         stopSimulation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopSimulationActionPerformed(evt);
             }
         });
-        getContentPane().add(stopSimulation, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
+
+        chargeTwo.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\Sprite-0001 (1).png")); // NOI18N
+
+        chargeOne.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\Sprite-0001 (1).png")); // NOI18N
+        chargeOne.setAlignmentY(0.0F);
+        chargeOne.setAutoscrolls(true);
+        chargeOne.setMinimumSize(new java.awt.Dimension(1, 1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel2)
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel1)
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(backwardsTime)
+                        .addGap(75, 75, 75)
+                        .addComponent(forwardsTime)
+                        .addGap(91, 91, 91)
+                        .addComponent(stopSimulation))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(forceOnChargeOneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(timeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(chargeOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chargeTwo)
+                            .addComponent(forceOnChargeTwoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(forceOnChargeOneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forceOnChargeTwoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4)
+                .addGap(6, 6, 6)
+                .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chargeTwo)
+                        .addGap(99, 99, 99)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(backwardsTime))
+                            .addComponent(forwardsTime)
+                            .addComponent(stopSimulation)))
+                    .addComponent(chargeOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -127,6 +202,8 @@ public class OutputFrame extends javax.swing.JFrame {
             c2.setCharge(InputFrame.inputTwo);
             c1.setMass();
             c2.setMass();
+            chargeOne.setLocation(180, 240);
+            chargeTwo.setLocation(400, 240);
         }
         distanceSearch += 1;
         System.out.println(distanceSearch);
@@ -141,6 +218,8 @@ public class OutputFrame extends javax.swing.JFrame {
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+        //Sets Screen Charge Distances
+        
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
@@ -213,17 +292,19 @@ public class OutputFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(OutputFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new OutputFrame().setVisible(true);
+                chargeOne.setLocation(0, 0);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backwardsTime;
+    public static javax.swing.JLabel chargeOne;
+    public static javax.swing.JLabel chargeTwo;
     public static javax.swing.JTextField distanceBetweenChargesOutput;
     public static javax.swing.JTextField forceOnChargeOneOutput;
     public static javax.swing.JTextField forceOnChargeTwoOutput;
