@@ -89,7 +89,7 @@ public class InputFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\SchoolThing2 (2).png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/charges/chargesv3/SchoolThing2 (2).png"))); // NOI18N
         jLabel4.setAlignmentX(0.5F);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

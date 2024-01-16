@@ -107,9 +107,9 @@ public class OutputFrame extends javax.swing.JFrame {
             }
         });
 
-        chargeTwo.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\Sprite-0001 (1).png")); // NOI18N
+        chargeTwo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/charges/chargesv3/Sprite-0001 (1).png"))); // NOI18N
 
-        chargeOne.setIcon(new javax.swing.ImageIcon("C:\\Users\\1337\\Downloads\\Sprite-0001 (1).png")); // NOI18N
+        chargeOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/charges/chargesv3/Sprite-0001 (1).png"))); // NOI18N
         chargeOne.setAlignmentY(0.0F);
         chargeOne.setAutoscrolls(true);
         chargeOne.setMinimumSize(new java.awt.Dimension(1, 1));
