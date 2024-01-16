@@ -12,7 +12,10 @@ import java.util.ArrayList;
 public class OutputFrame extends javax.swing.JFrame {
     public static double time = 0;
     private static int distanceSearch = 0;
-    private static int distanceSize = 0;
+    private static double chargeOneDistanceSize = 0;
+    private static double chargeTwoDistanceSize = 0;
+    private static int pixelChangeChargeOne = 0;
+    private static int pixelChangeChargeTwo = 0;
     ArrayList<Double> distancesList = new ArrayList<>();
     Charges c1 = new Charges(InputFrame.inputOne, 0, 0);
     Charges c2 = new Charges(InputFrame.inputTwo, 0, 0);
@@ -121,18 +124,16 @@ public class OutputFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel1)
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(231, 231, 231)
+                        .addComponent(chargeTwo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(backwardsTime)
@@ -148,16 +149,19 @@ public class OutputFrame extends javax.swing.JFrame {
                                 .addGap(53, 53, 53)
                                 .addComponent(timeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(chargeOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel2)
+                                .addGap(121, 121, 121)
+                                .addComponent(jLabel1)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(forceOnChargeTwoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(chargeTwo)))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addGap(15, 15, 15)))))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,31 +169,29 @@ public class OutputFrame extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel3)))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(forceOnChargeOneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(timeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(forceOnChargeTwoOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4)
+                .addGap(6, 6, 6)
+                .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chargeTwo))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(chargeOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chargeTwo))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(backwardsTime))
-                            .addComponent(forwardsTime)
-                            .addComponent(stopSimulation)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel4)
-                        .addGap(6, 6, 6)
-                        .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(2, 2, 2)
+                        .addComponent(backwardsTime))
+                    .addComponent(forwardsTime)
+                    .addComponent(stopSimulation)))
         );
 
         pack();
@@ -211,7 +213,9 @@ public class OutputFrame extends javax.swing.JFrame {
             //chargeOne.setLocation(180, 240);
             //chargeTwo.setLocation(400, 240);
         }
-        distanceSize = Double.toString(Charges.getDistance()).length();
+        //distanceSize = Double.toString(Charges.getDistance()).length();
+        chargeOneDistanceSize = c1.getChargeDistance(c1, c2, time);
+        chargeTwoDistanceSize = c2.getChargeDistance(c2, c1, time);
         distanceSearch += 1;
         time += 0.000000001;
         
@@ -225,8 +229,35 @@ public class OutputFrame extends javax.swing.JFrame {
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
-        //chargeOne.setLocation(10 * distanceSize, 240);
-        System.out.println(distanceSize);
+        chargeOneDistanceSize = c1.getChargeDistance(c1, c2, time) - chargeOneDistanceSize;
+        while((int)chargeOneDistanceSize == 0)
+        {
+                chargeOneDistanceSize *= 10;
+                System.out.println(chargeOneDistanceSize);
+        }
+        while((int)chargeOneDistanceSize >= 10)
+        {
+            chargeOneDistanceSize /= 10;
+            System.out.println(chargeOneDistanceSize);
+        }
+        pixelChangeChargeOne += chargeOneDistanceSize;
+        System.out.println(pixelChangeChargeOne);
+        chargeOne.setLocation(-10 * pixelChangeChargeOne + 175, 210); 
+        
+        chargeTwoDistanceSize = c2.getChargeDistance(c2, c1, time) - chargeTwoDistanceSize;
+        while((int)chargeTwoDistanceSize == 0)
+        {
+                chargeTwoDistanceSize *= 10;
+                System.out.println(chargeTwoDistanceSize);
+        }
+        while((int)chargeTwoDistanceSize >= 10)
+        {
+            chargeTwoDistanceSize /= 10;
+            System.out.println(chargeTwoDistanceSize);
+        }
+        pixelChangeChargeTwo += chargeTwoDistanceSize;
+        System.out.println(pixelChangeChargeTwo);
+        chargeTwo.setLocation(10 * pixelChangeChargeTwo + 375, 210); 
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
@@ -310,8 +341,8 @@ public class OutputFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backwardsTime;
-    private javax.swing.JLabel chargeOne;
-    private javax.swing.JLabel chargeTwo;
+    public static javax.swing.JLabel chargeOne;
+    public static javax.swing.JLabel chargeTwo;
     public static javax.swing.JTextField distanceBetweenChargesOutput;
     public static javax.swing.JTextField forceOnChargeOneOutput;
     public static javax.swing.JTextField forceOnChargeTwoOutput;
