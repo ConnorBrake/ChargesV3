@@ -11,6 +11,7 @@ package charges.chargesv3;
 public class Charges {
     private double charge; 
     private static double distance;
+    private static double initialDistance;
     private double velocity;
     private double mass;
     private double direction;
@@ -67,11 +68,17 @@ public class Charges {
     {
         return distance;
     }
+    public Double getChargeDistance(Charges c1, Charges c2, double t)
+    {
+        double distanceOfCharge = ((getCurrentChargeVelocity() * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
+        return distanceOfCharge + (initialDistance / 2);
+    }
     
     //Mutator Methods
     public static double setChargeDistance(double r) //Must be positive and not exactly 0
     {
         distance = r;
+        initialDistance = distance;
         return distance;
     }
     public double setCharge(double c) //Must be positive and not exactly 0
