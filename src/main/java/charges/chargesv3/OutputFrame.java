@@ -5,6 +5,7 @@
 package charges.chargesv3;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author CoBra1341
@@ -262,6 +263,8 @@ public class OutputFrame extends javax.swing.JFrame {
         {
             pixelChangeChargeOne = 0;
             pixelChangeChargeTwo = 0;
+//            chargeOne.setSize(10, 100);
+//            chargeTwo.setSize(10, 100);
         }
         chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
         chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
