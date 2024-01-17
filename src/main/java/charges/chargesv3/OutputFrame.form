@@ -34,7 +34,7 @@
                       <Component id="distanceBetweenChargesOutput" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="135" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="chargeOne" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                       <Component id="chargeTwo" min="-2" max="-2" attributes="0"/>
@@ -100,19 +100,24 @@
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Component id="distanceBetweenChargesOutput" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="chargeOne" min="-2" max="-2" attributes="0"/>
-                  <Component id="chargeTwo" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Component id="backwardsTime" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="chargeOne" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="forwardsTime" min="-2" max="-2" attributes="0"/>
-                  <Component id="stopSimulation" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="chargeTwo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                              <Component id="backwardsTime" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="forwardsTime" min="-2" max="-2" attributes="0"/>
+                          <Component id="stopSimulation" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -227,9 +232,6 @@
         </Property>
         <Property name="alignmentY" type="float" value="0.0"/>
         <Property name="autoscrolls" type="boolean" value="true"/>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1, 1]"/>
-        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

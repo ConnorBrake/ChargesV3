@@ -115,7 +115,6 @@ public class OutputFrame extends javax.swing.JFrame {
         chargeOne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sprite-0001 (1).png"))); // NOI18N
         chargeOne.setAlignmentY(0.0F);
         chargeOne.setAutoscrolls(true);
-        chargeOne.setMinimumSize(new java.awt.Dimension(1, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,7 +130,7 @@ public class OutputFrame extends javax.swing.JFrame {
                         .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(chargeOne)
                         .addGap(231, 231, 231)
                         .addComponent(chargeTwo))
                     .addGroup(layout.createSequentialGroup()
@@ -181,17 +180,20 @@ public class OutputFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(6, 6, 6)
                 .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chargeTwo))
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(backwardsTime))
-                    .addComponent(forwardsTime)
-                    .addComponent(stopSimulation)))
+                        .addGap(34, 34, 34)
+                        .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(chargeTwo)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(backwardsTime))
+                            .addComponent(forwardsTime)
+                            .addComponent(stopSimulation)))))
         );
 
         pack();
@@ -241,8 +243,7 @@ public class OutputFrame extends javax.swing.JFrame {
             System.out.println(chargeOneDistanceSize);
         }
         pixelChangeChargeOne += chargeOneDistanceSize;
-        System.out.println(pixelChangeChargeOne);
-        chargeOne.setLocation(-10 * pixelChangeChargeOne + 175, 210); 
+        System.out.println(pixelChangeChargeOne); 
         
         chargeTwoDistanceSize = c2.getChargeDistance(c2, c1, time) - chargeTwoDistanceSize;
         while((int)chargeTwoDistanceSize == 0)
@@ -257,7 +258,13 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         pixelChangeChargeTwo += chargeTwoDistanceSize;
         System.out.println(pixelChangeChargeTwo);
-        chargeTwo.setLocation(10 * pixelChangeChargeTwo + 375, 210); 
+        if(-10 * pixelChangeChargeOne + 145 < -10 || 10 * pixelChangeChargeTwo + 440 > 595)
+        {
+            pixelChangeChargeOne = 0;
+            pixelChangeChargeTwo = 0;
+        }
+        chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
+        chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
