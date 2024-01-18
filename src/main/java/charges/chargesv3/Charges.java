@@ -20,6 +20,12 @@ public class Charges {
     private static final double eValue = 1.602 * Math.pow(10, -19);
     private static final double cValue = 3 * Math.pow(10, 8);
     
+    /**
+     *
+     * @param c
+     * @param v
+     * @param m
+     */
     public Charges(double c, double v, double m)
     {
         velocity = v = 0;
@@ -28,35 +34,86 @@ public class Charges {
     }
     
     //Accessor Methods
+
+    /**
+     *
+     * @return
+     */
     public double getDirection()
     {
         return direction;
     }
+
+    /**
+     *
+     * @return
+     */
     public double getCharge()
     {
         return charge;
     }
+
+    /**
+     *
+     * @return
+     */
     public double getMass()
     {
         return mass;
     }
+
+    /**
+     *
+     * @param c1
+     * @param c2
+     * @return
+     */
     public double getElectricForce(Charges c1, Charges c2)
     {
         return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2));
     }
+
+    /**
+     *
+     * @return
+     */
     public double getCurrentChargeVelocity()
     {
         return velocity;
     }
+
+    /**
+     *
+     * @param c1
+     * @param c2
+     * @return
+     */
     public double getNewChargeAcceleration(Charges c1, Charges c2)
     {
         return (getElectricForce(c1, c2)) / getMass();
     }
+
+    /**
+     *
+     * @param c1
+     * @param c2
+     * @param t
+     * @return
+     */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t)
     {
         velocity = (getNewChargeAcceleration(c1, c2) * t + ((getDistance() - distance) / t));
         return velocity; 
     }
+
+    /**
+     *
+     * @param c1
+     * @param c2
+     * @param t
+     * @param a
+     * @return
+     */
     public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
         double distanceOfChargeOne = a * ((c1.getCurrentChargeVelocity() * t) + (0.5 * c1.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
@@ -64,10 +121,23 @@ public class Charges {
         distance = (distanceOfChargeOne + distanceOfChargeTwo) + distance;
         return distance;
     }
+
+    /**
+     *
+     * @return
+     */
     public static double getDistance()
     {
         return distance;
     }
+
+    /**
+     *
+     * @param c1
+     * @param c2
+     * @param t
+     * @return
+     */
     public Double getChargeDistance(Charges c1, Charges c2, double t)
     {
         double distanceOfCharge = ((getCurrentChargeVelocity() * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
@@ -75,25 +145,37 @@ public class Charges {
     }
     
     //Mutator Methods
+
+    /**
+     *
+     * @param r
+     * @return
+     */
     public static double setChargeDistance(double r) //Must be positive and not exactly 0
     {
         distance = r;
         initialDistance = distance;
         return distance;
     }
+
+    /**
+     *
+     * @param c
+     * @return
+     */
     public double setCharge(double c) //Must be positive and not exactly 0
     {
         charge = c;
         return charge;
     }
+
+    /**
+     *
+     * @return
+     */
     public double setMass()
     {
         mass = (getCharge() / eValue) * (1.67*Math.pow(10, -27));
         return mass;
     }
-//    public static double setChargeVelocity(Charges c1, Charges c2, double r, double m) //Must use after charge instatiation and initialization
-//    {
-//        velocity = Math.sqrt(2 * ((kValue * c1.getCharge() * c2.getCharge()) / r) / (0.5 * m));
-//        return velocity;
-//    }
 }
