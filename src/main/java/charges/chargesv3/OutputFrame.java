@@ -315,11 +315,46 @@ public class OutputFrame extends javax.swing.JFrame {
                 
                 //Outputs To Output Frame Components 
                 distanceBetweenChargesOutput.setText(Double.toString(distancesList.get(distanceSearch)));
-                Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
+                Charges.setChargeDistance(distancesList.get(distanceSearch));
                 forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
                 forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
                 time -= 0.000000001;
                 timeOutput.setText(Double.toString(time));
+<<<<<<< Updated upstream
+=======
+                
+                //Sets Screen Charge Distances
+                //Sets Screen Distance of Charge One
+                chargeOneDistanceSize = Math.abs(c1.getChargeDistance(c1, c2, time) - chargeOneDistanceSize);
+                while((int)chargeOneDistanceSize == 0)
+                {
+                    chargeOneDistanceSize *= 10;
+                }
+                while((int)chargeOneDistanceSize >= 10)
+                {
+                    chargeOneDistanceSize /= 10;
+                }
+
+                //Sets Screen Distance of Charge Two
+                chargeTwoDistanceSize = Math.abs(c2.getChargeDistance(c2, c1, time) - chargeTwoDistanceSize);
+                while((int)chargeTwoDistanceSize == 0)
+                {
+                    chargeTwoDistanceSize *= 10;
+                }
+                while((int)chargeTwoDistanceSize >= 10)
+                {
+                    chargeTwoDistanceSize /= 10;
+                }
+                if(-10 * pixelChangeChargeOne + 145 >= 135 || 10 * pixelChangeChargeTwo + 440 <= 595)
+                {
+                    pixelChangeChargeOne = 5;
+                    pixelChangeChargeTwo = 5;
+                }
+                pixelChangeChargeOne -= chargeOneDistanceSize;
+                pixelChangeChargeTwo -= chargeTwoDistanceSize;
+                chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
+                chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
+>>>>>>> Stashed changes
             }
         }
     }//GEN-LAST:event_backwardsTimeActionPerformed
