@@ -120,17 +120,18 @@ public class InputFrame extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(321, 321, 321)
                         .addComponent(runSimulation))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(errorThree)))
-                .addGap(19, 19, 19))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(distanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +219,10 @@ public class InputFrame extends javax.swing.JFrame {
         {
             return;
         }
-        this.dispose();
-        new OutputFrame().setVisible(true);
         
+        this.dispose();
+        
+        new OutputFrame().setVisible(true);
         OutputFrame.forceOnChargeOneOutput.setText(Double.toString(inputOne));
         OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(inputTwo));
         OutputFrame.distanceBetweenChargesOutput.setText(Double.toString(inputThree));
