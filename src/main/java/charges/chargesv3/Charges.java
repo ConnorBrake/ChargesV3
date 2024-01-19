@@ -97,15 +97,14 @@ public class Charges {
      *
      * @param c1
      * @param c2
-     * @param dist
      * @param t
      * @return
      */
-    public double getNewChargeVelocity(Charges c1,  Charges c2, double dist,double t)
+    public double getNewChargeVelocity(Charges c1,  Charges c2, double t)
     {
         velocity = getNewChargeAcceleration(c1, c2) * t + getCurrentChargeVelocity();
         return velocity; 
-    } 
+    }
 
     /**
      *
@@ -141,8 +140,7 @@ public class Charges {
      */
     public Double getChargeDistance(Charges c1, Charges c2, double dist, double t)
     {
-        double distanceOfCharge = ((getNewChargeVelocity(c1, c2, dist, t) * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
-        System.out.println(getNewChargeVelocity(c1, c2, dist, t));
+        double distanceOfCharge = ((getNewChargeVelocity(c1, c2, t) * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
         return distanceOfCharge + (initialDistance / 2);
     }
     
