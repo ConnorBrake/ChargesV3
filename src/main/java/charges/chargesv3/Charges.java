@@ -103,9 +103,9 @@ public class Charges {
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double dist,double t)
     {
-        velocity = getNewChargeAcceleration(c1, c2) * t;
+        velocity = getNewChargeAcceleration(c1, c2) * t + getCurrentChargeVelocity();
         return velocity; 
-    }
+    } 
 
     /**
      *
