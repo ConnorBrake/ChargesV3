@@ -103,7 +103,7 @@ public class Charges {
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double dist,double t)
     {
-        velocity = (getNewChargeAcceleration(c1, c2) * t + (Math.abs(dist - distance) / t));
+        velocity = getNewChargeAcceleration(c1, c2) * t;
         return velocity; 
     }
 
