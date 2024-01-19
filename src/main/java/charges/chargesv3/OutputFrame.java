@@ -252,13 +252,14 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         if(-10 * pixelChangeChargeOne + 145 < -10 || 10 * pixelChangeChargeTwo + 440 > 595)
         {
+            System.out.println("aaaaaaaaaaa" + pixelChangeChargeOne);
             pixelChangeChargeOne = 0;
             pixelChangeChargeTwo = 0;
         }
-        pixelChangeChargeOne += chargeOneDistanceSize;
-        pixelChangeChargeTwo += chargeTwoDistanceSize;
         chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
         chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
+        pixelChangeChargeOne += chargeOneDistanceSize;
+        pixelChangeChargeTwo += chargeTwoDistanceSize;
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
@@ -290,15 +291,15 @@ public class OutputFrame extends javax.swing.JFrame {
                 {
                     chargeTwoDistanceSize /= 10;
                 }
-                if(-10 * pixelChangeChargeOne + 145 >= 135 || 10 * pixelChangeChargeTwo + 440 <= 595)
+                if(pixelChangeChargeOne <= 0 || pixelChangeChargeTwo <= 0)
                 {
-                    pixelChangeChargeOne = 5;
-                    pixelChangeChargeTwo = 5;
+                    pixelChangeChargeOne = 17;
+                    pixelChangeChargeTwo = 17;
                 }
-                pixelChangeChargeOne -= chargeOneDistanceSize;
-                pixelChangeChargeTwo -= chargeTwoDistanceSize;
                 chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
                 chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
+                pixelChangeChargeOne -= chargeOneDistanceSize;
+                pixelChangeChargeTwo -= chargeTwoDistanceSize;
                 
                 distancesList.remove(distanceSearch);
                 distanceSearch -= 1;
