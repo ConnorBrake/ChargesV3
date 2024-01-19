@@ -207,8 +207,8 @@ public class OutputFrame extends javax.swing.JFrame {
         //distanceSize = Double.toString(Charges.getDistance()).length();
         if(time == 0)
         {
-            c1.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
-            distancesList.add(c1.getDistance());
+            Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
+            distancesList.add(Charges.getDistance());
 
             c1.setCharge(InputFrame.inputOne);
             c2.setCharge(InputFrame.inputTwo);
@@ -219,9 +219,9 @@ public class OutputFrame extends javax.swing.JFrame {
         distanceSearch += 1;
         time += 0.000000001;
         c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewChargeVelocity(c1, c2, Charges.getNewDistance(c1, c2, time, 1),time);
+        c1.getNewChargeVelocity(c1, c2,time);
         c2.getNewChargeAcceleration(c1, c2);
-        c2.getNewChargeVelocity(c1, c2, Charges.getNewDistance(c1, c2, time, 1),time);
+        c2.getNewChargeVelocity(c1, c2,time);
         //Outputs To Output Frame Components 
         distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
         timeOutput.setText(Double.toString(time));
@@ -233,7 +233,7 @@ public class OutputFrame extends javax.swing.JFrame {
         chargeOneDistanceSize = Math.abs(c1.getChargeDistance(c1, c2, Charges.getDistance() * 2, time) - chargeOneDistanceSize);
         while((int)chargeOneDistanceSize == 0)
         {
-                chargeOneDistanceSize *= 10;
+            chargeOneDistanceSize *= 10;
         }
         while((int)chargeOneDistanceSize >= 10)
         {
@@ -250,16 +250,15 @@ public class OutputFrame extends javax.swing.JFrame {
         {
             chargeTwoDistanceSize /= 10;
         }
-        if(-10 * pixelChangeChargeOne + 145 < -10 || 10 * pixelChangeChargeTwo + 440 > 595)
+        if(-10 * pixelChangeChargeOne + 145 <= 10 || 10 * pixelChangeChargeTwo + 440 >= 595)
         {
-            System.out.println("aaaaaaaaaaa" + pixelChangeChargeOne);
             pixelChangeChargeOne = 0;
             pixelChangeChargeTwo = 0;
         }
+        pixelChangeChargeOne += (int)chargeOneDistanceSize;
+        pixelChangeChargeTwo += (int)chargeTwoDistanceSize;
         chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
         chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
-        pixelChangeChargeOne += chargeOneDistanceSize;
-        pixelChangeChargeTwo += chargeTwoDistanceSize;
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
@@ -291,8 +290,9 @@ public class OutputFrame extends javax.swing.JFrame {
                 {
                     chargeTwoDistanceSize /= 10;
                 }
-                if(pixelChangeChargeOne <= 0 || pixelChangeChargeTwo <= 0)
+                if(-10 * pixelChangeChargeOne + 145 >= 145 || 10 * pixelChangeChargeTwo + 440 <= 440)
                 {
+                    System.out.println("ggggggggggggggggggggggggg");
                     pixelChangeChargeOne = 17;
                     pixelChangeChargeTwo = 17;
                 }
@@ -301,12 +301,11 @@ public class OutputFrame extends javax.swing.JFrame {
                 pixelChangeChargeOne -= chargeOneDistanceSize;
                 pixelChangeChargeTwo -= chargeTwoDistanceSize;
                 
+                //Outputs To Output Frame Components
                 distancesList.remove(distanceSearch);
                 distanceSearch -= 1;
                 System.out.println(distanceSearch);
                 distancesList.get(distanceSearch);
-                
-                //Outputs To Output Frame Components 
                 distanceBetweenChargesOutput.setText(Double.toString(distancesList.get(distanceSearch)));
                 Charges.setChargeDistance(distancesList.get(distanceSearch));
                 forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
