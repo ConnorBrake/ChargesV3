@@ -208,28 +208,27 @@ public class OutputFrame extends javax.swing.JFrame {
         {
             Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
             distancesList.add(Charges.getDistance());
-
+            
             c1.setCharge(InputFrame.inputOne);
             c2.setCharge(InputFrame.inputTwo);
             c1.setMass();
             c2.setMass();
         }
-        
         distanceSearch += 1;
         time += 0.000000001;
         c1.getNewChargeAcceleration(c1, c2);
         c1.getNewChargeVelocity(c1, c2,time);
         c2.getNewChargeAcceleration(c1, c2);
         c2.getNewChargeVelocity(c1, c2,time);
-        //Outputs To Output Frame Components 
+        //Outputs To Output Frame Components
         distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
+        distancesList.add(Charges.getDistance());
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
-        distancesList.add(Charges.getDistance());
         //Sets Screen Charge Distances
         //Sets Screen Distance of Charge One
-        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - Charges.getDistance());
+        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - c1.getChargeDistance(c1, c2, time));
         while((int)chargeOneDistanceSize == 0)
         {
             chargeOneDistanceSize *= 10;
@@ -240,7 +239,7 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         
         //Sets Screen Distance of Charge Two
-        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - Charges.getDistance());
+        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - c2.getChargeDistance(c2, c1, time));
         while((int)chargeTwoDistanceSize == 0)
         {
                 chargeTwoDistanceSize *= 10;
@@ -258,6 +257,7 @@ public class OutputFrame extends javax.swing.JFrame {
         pixelChangeChargeTwo += (int)chargeTwoDistanceSize;
         chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
         chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
+        System.out.println(Charges.getDistance());
     }//GEN-LAST:event_forwardsTimeActionPerformed
 
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
@@ -267,9 +267,18 @@ public class OutputFrame extends javax.swing.JFrame {
         {
             if(distanceSearch > 0)
             {
+                //Outputs To Output Frame Components
+                distancesList.remove(distanceSearch);
+                distanceSearch -= 1;
+                distanceBetweenChargesOutput.setText(Double.toString(distancesList.get(distanceSearch)));
+                forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
+                forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
+                time -= 0.000000001;
+                timeOutput.setText(Double.toString(time));
+                
                 //Sets Screen Charge Distances
                 //Sets Screen Distance of Charge One
-                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - Charges.getDistance());
+                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time));
                 while((int)chargeOneDistanceSize == 0)
                 {
                     chargeOneDistanceSize *= 10;
@@ -280,7 +289,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 }
 
                 //Sets Screen Distance of Charge Two
-                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - Charges.getDistance());
+                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time));
                 while((int)chargeTwoDistanceSize == 0)
                 {
                     chargeTwoDistanceSize *= 10;
@@ -289,27 +298,19 @@ public class OutputFrame extends javax.swing.JFrame {
                 {
                     chargeTwoDistanceSize /= 10;
                 }
-                if(-10 * pixelChangeChargeOne + 145 > 125 || 10 * pixelChangeChargeTwo + 440 < 460)
+                if(pixelChangeChargeOne <= 0 || pixelChangeChargeTwo <= 0)
                 {
-                    System.out.println("gggggggggggggggggggggggggg");
-                    pixelChangeChargeOne = 15;
-                    pixelChangeChargeTwo = 15;
+                    pixelChangeChargeOne = 14;
+                    pixelChangeChargeTwo = 14;
                 }
                 pixelChangeChargeOne -= (int)chargeOneDistanceSize;
                 pixelChangeChargeTwo -= (int)chargeTwoDistanceSize;
                 chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
                 chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
-                
-                //Outputs To Output Frame Components
-                distancesList.remove(distanceSearch);
-                distanceSearch -= 1;
-                System.out.println(distanceSearch);
-                distancesList.get(distanceSearch);
-                distanceBetweenChargesOutput.setText(Double.toString(distancesList.get(distanceSearch)));
-                Charges.setChargeDistance(distancesList.get(distanceSearch));
-                forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
-                forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
-                time -= 0.000000001;
+            }
+            else
+            {
+                time = 0;
                 timeOutput.setText(Double.toString(time));
             }
         }
