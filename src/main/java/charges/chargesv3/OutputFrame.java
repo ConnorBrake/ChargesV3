@@ -204,7 +204,6 @@ public class OutputFrame extends javax.swing.JFrame {
     private void forwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardsTimeActionPerformed
         // TODO add your handling code here:
         //Handles Number Outputs Forwards In Time
-        //distanceSize = Double.toString(Charges.getDistance()).length();
         if(time == 0)
         {
             Charges.setChargeDistance(Double.parseDouble(distanceBetweenChargesOutput.getText()));
@@ -290,11 +289,11 @@ public class OutputFrame extends javax.swing.JFrame {
                 {
                     chargeTwoDistanceSize /= 10;
                 }
-                if(-10 * pixelChangeChargeOne + 145 > 135 || 10 * pixelChangeChargeTwo + 440 < 450)
+                if(-10 * pixelChangeChargeOne + 145 > 125 || 10 * pixelChangeChargeTwo + 440 < 460)
                 {
                     System.out.println("gggggggggggggggggggggggggg");
-                    pixelChangeChargeOne = 16;
-                    pixelChangeChargeTwo = 16;
+                    pixelChangeChargeOne = 15;
+                    pixelChangeChargeTwo = 15;
                 }
                 pixelChangeChargeOne -= (int)chargeOneDistanceSize;
                 pixelChangeChargeTwo -= (int)chargeTwoDistanceSize;
@@ -318,6 +317,7 @@ public class OutputFrame extends javax.swing.JFrame {
 
     private void stopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSimulationActionPerformed
         // TODO add your handling code here:
+        //Deletion of outputframe and creation of inputframe
         this.dispose();
         new InputFrame().setVisible(true);
     }//GEN-LAST:event_stopSimulationActionPerformed
