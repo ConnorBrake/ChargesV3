@@ -11,7 +11,7 @@ package charges.chargesv3;
 public class InputFrame extends javax.swing.JFrame {
     public static double inputOne;
     public static double inputTwo;
-    public static double inputThree = 0;
+    public static double inputThree;
     
     OutputFrame outputFrame = new OutputFrame();
     /**
@@ -179,6 +179,7 @@ public class InputFrame extends javax.swing.JFrame {
 
     private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
         // TODO add your handling code here:
+        //Outputs and stops errors
         try{
             inputOne = Double.parseDouble(chargeOneInput.getText());
             errorOne.setVisible(false);
@@ -219,9 +220,8 @@ public class InputFrame extends javax.swing.JFrame {
         {
             return;
         }
-        
+        //Deletion of inputframe and creation of outputframe
         this.dispose();
-        
         new OutputFrame().setVisible(true);
         OutputFrame.forceOnChargeOneOutput.setText(Double.toString(inputOne));
         OutputFrame.forceOnChargeTwoOutput.setText(Double.toString(inputTwo));
