@@ -138,7 +138,7 @@ public class Charges {
      * @param t
      * @return
      */
-    public Double getChargeDistance(Charges c1, Charges c2, double dist, double t)
+    public Double getChargeDistance(Charges c1, Charges c2, double t)
     {
         double distanceOfCharge = ((getNewChargeVelocity(c1, c2, t) * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
         return distanceOfCharge + (initialDistance / 2);
