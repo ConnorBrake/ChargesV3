@@ -217,9 +217,11 @@ public class OutputFrame extends javax.swing.JFrame {
         distanceSearch += 1;
         time += 0.000000001;
         c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewChargeVelocity(c1, c2, time , 1);
+        c1.getNewChargeVelocity(c1, c2, time);
         c2.getNewChargeAcceleration(c1, c2);
-        c2.getNewChargeVelocity(c1, c2,time, -1);
+        c2.getNewChargeVelocity(c1, c2,time);
+        c1.getChargeDistance(c1, c2, time);
+        c2.getChargeDistance(c1, c2, time);
         //Outputs To Output Frame Components
         distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
         distancesList.add(Charges.getDistance());
@@ -228,7 +230,7 @@ public class OutputFrame extends javax.swing.JFrame {
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
         //Sets Screen Distance of Charge One
-        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - c1.getChargeDistance(c1, c2, time, -1));
+        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time));
         while((int)chargeOneDistanceSize == 0)
         {
             chargeOneDistanceSize *= 10;
@@ -239,7 +241,7 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         
         //Sets Screen Distance of Charge Two
-        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch - 1) - c2.getChargeDistance(c2, c1, time, 1));
+        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time));
         while((int)chargeTwoDistanceSize == 0)
         {
                 chargeTwoDistanceSize *= 10;
@@ -275,7 +277,6 @@ public class OutputFrame extends javax.swing.JFrame {
                 time -= 0.000000001;
                 timeOutput.setText(Double.toString(time));
                 
-                System.out.println("Currenct Charge One Velocity (m/s): " + c1.getCurrentChargeVelocity());
                 //Sets Screen Charge Distances
                 //Sets Screen Distance of Charge One
                 chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time));
