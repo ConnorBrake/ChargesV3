@@ -96,7 +96,7 @@ public class OutputFrame extends javax.swing.JFrame {
             }
         });
 
-        backwardsTime.setText("Backwards Time (+1ns)");
+        backwardsTime.setText("Backwards Time (-1ns)");
         backwardsTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backwardsTimeActionPerformed(evt);
@@ -181,12 +181,10 @@ public class OutputFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(6, 6, 6)
                 .addComponent(distanceBetweenChargesOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(chargeOne, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addComponent(chargeTwo)
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
