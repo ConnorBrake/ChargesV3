@@ -102,7 +102,7 @@ public class Charges {
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t, double d)
     {
-        velocity = d * (((getElectricForce(c1, c2)) / getMass() * t)) + getCurrentChargeVelocity();
+        velocity = d * Math.sqrt((2 * kValue * c1.getCharge() * c2.getCharge()) / 2 * getMass()) + getCurrentChargeVelocity();
         return velocity; 
     }
 
@@ -116,8 +116,8 @@ public class Charges {
      */
     public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
-        double distanceOfChargeOne = ((c1.getCurrentChargeVelocity() * t) + (0.5 * c1.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
-        double distanceOfChargeTwo = ((c2.getCurrentChargeVelocity() * t) + (0.5 * c2.getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
+        double distanceOfChargeOne = (c1.getNewChargeVelocity(c1, c2, t, a) * t);
+        double distanceOfChargeTwo = (c2.getNewChargeVelocity(c1, c2, t, a) * t);
         distance = (distanceOfChargeOne + distanceOfChargeTwo) + distance;
         return distance;
     }
@@ -140,7 +140,7 @@ public class Charges {
      */
     public Double getChargeDistance(Charges c1, Charges c2, double t, double d)
     {
-        double distanceOfCharge = ((getNewChargeVelocity(c1, c2, t, d) * t) + (0.5 * getNewChargeAcceleration(c1, c2) * Math.pow(t, 2)));
+        double distanceOfCharge = (getNewChargeVelocity(c1, c2, t, d) * t);
         return distanceOfCharge + (initialDistance / 2);
     }
     
