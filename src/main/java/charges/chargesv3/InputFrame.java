@@ -179,7 +179,7 @@ public class InputFrame extends javax.swing.JFrame {
 
     private void runSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSimulationActionPerformed
         // TODO add your handling code here:
-        //Outputs and stops errors
+        //Stops and outputs errors
         try{
             inputOne = Double.parseDouble(chargeOneInput.getText());
             errorOne.setVisible(false);

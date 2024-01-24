@@ -11,6 +11,10 @@ import java.util.ArrayList;
  * @author CoBra1341
  */
 public class OutputFrame extends javax.swing.JFrame {
+
+    /**
+     *
+     */
     public static double time = 0;
     private static int distanceSearch = 0;
     private static double chargeOneDistanceSize = 0;
