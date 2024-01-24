@@ -106,7 +106,7 @@ public class Charges {
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t, double d)
     {
-        velocity = d * (getNewChargeAcceleration(c1, c2) * t) + getCurrentChargeVelocity();
+        velocity = (d * (getNewChargeAcceleration(c1, c2) * t)) + getCurrentChargeVelocity();
         return velocity; 
     }
 
@@ -120,8 +120,8 @@ public class Charges {
      */
     public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
-        distanceOfChargeOne += Math.abs((c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
-        distanceOfChargeTwo += Math.abs((c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
+        distanceOfChargeOne += (c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2));
+        distanceOfChargeTwo += (c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2));
         distance += distanceOfChargeOne + distanceOfChargeTwo;
         return distance;
     }
@@ -146,7 +146,7 @@ public class Charges {
      */
     public Double getChargeDistance(Charges c1, Charges c2, double t, double a ,double d)
     {
-        distanceOfCharge += d * ((c2.getCurrentChargeVelocity()) * t) + (0.5 * a * Math.pow(t, 2));
+        distanceOfCharge += (d * ((c2.getCurrentChargeVelocity()) * t)) + (0.5 * a * Math.pow(t, 2));
         return distanceOfCharge + (initialDistance / 2);
     }
     
