@@ -229,7 +229,7 @@ public class OutputFrame extends javax.swing.JFrame {
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
         //Sets Screen Distance of Charge One
-        chargeOneDistanceSize = distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, -1);
+        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, -1));
         while((int)chargeOneDistanceSize == 0)
         {
             chargeOneDistanceSize *= 10;
@@ -240,7 +240,7 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         
         //Sets Screen Distance of Charge Two
-        chargeTwoDistanceSize = distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, 1);
+        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, 1));
         while((int)chargeTwoDistanceSize == 0)
         {
                 chargeTwoDistanceSize *= 10;
@@ -279,7 +279,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 
                 //Sets Screen Charge Distances
                 //Sets Screen Distance of Charge One
-                chargeOneDistanceSize = distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, 1);
+                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, 1));
                 while((int)chargeOneDistanceSize == 0)
                 {
                     chargeOneDistanceSize *= 10;
@@ -290,7 +290,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 }
 
                 //Sets Screen Distance of Charge Two
-                chargeTwoDistanceSize = distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, -1);
+                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, -1));
                 while((int)chargeTwoDistanceSize == 0)
                 {
                     chargeTwoDistanceSize *= 10;
