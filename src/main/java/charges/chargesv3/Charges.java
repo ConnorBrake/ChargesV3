@@ -12,6 +12,9 @@ public class Charges {
     private double charge; 
     private static double distance;
     private static double initialDistance;
+    private static double distanceOfChargeOne = 0;
+    private static double distanceOfChargeTwo = 0;
+    private double distanceOfCharge = 0;
     private double velocity;
     private double mass;
     private double direction;
@@ -98,11 +101,12 @@ public class Charges {
      * @param c1
      * @param c2
      * @param t
+     * @param d
      * @return
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t, double d)
     {
-        velocity = d * Math.sqrt((2 * kValue * c1.getCharge() * c2.getCharge()) / 2 * getMass()) + getCurrentChargeVelocity();
+        velocity = d * (getNewChargeAcceleration(c1, c2) * t) + getCurrentChargeVelocity();
         return velocity; 
     }
 
@@ -116,9 +120,9 @@ public class Charges {
      */
     public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
-        double distanceOfChargeOne = (c1.getNewChargeVelocity(c1, c2, t, a) * t);
-        double distanceOfChargeTwo = (c2.getNewChargeVelocity(c1, c2, t, a) * t);
-        distance = (distanceOfChargeOne + distanceOfChargeTwo) + distance;
+        distanceOfChargeOne += Math.abs((c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
+        distanceOfChargeTwo += Math.abs((c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
+        distance += distanceOfChargeOne + distanceOfChargeTwo;
         return distance;
     }
 
@@ -136,11 +140,13 @@ public class Charges {
      * @param c1
      * @param c2
      * @param t
+     * @param a
+     * @param d
      * @return
      */
-    public Double getChargeDistance(Charges c1, Charges c2, double t, double d)
+    public Double getChargeDistance(Charges c1, Charges c2, double t, double a ,double d)
     {
-        double distanceOfCharge = (getNewChargeVelocity(c1, c2, t, d) * t);
+        distanceOfCharge += d * ((c2.getCurrentChargeVelocity()) * t) + (0.5 * a * Math.pow(t, 2));
         return distanceOfCharge + (initialDistance / 2);
     }
     
