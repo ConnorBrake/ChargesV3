@@ -5,7 +5,8 @@
 package charges.chargesv3;
 
 /**
- *
+ * Methods For Creating Point Charges
+ * 
  * @author CoBra1341
  */
 public class Charges {
@@ -24,7 +25,8 @@ public class Charges {
     private static final double cValue = 3 * Math.pow(10, 8);
     
     /**
-     *
+     * The Charge Constructor 
+     * 
      * @param c
      * @param v
      * @param m
@@ -39,7 +41,8 @@ public class Charges {
     //Accessor Methods
 
     /**
-     *
+     * Returns The Vector Nature of A Point Charge
+     * 
      * @return
      */
     public double getDirection()
@@ -48,6 +51,7 @@ public class Charges {
     }
 
     /**
+     * Returns the Charge of A Point Charge
      *
      * @return
      */
@@ -57,7 +61,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The Mass of A Point Charge
+     * 
      * @return
      */
     public double getMass()
@@ -66,7 +71,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The Present Electric Force On A Point Charge
+     * 
      * @param c1
      * @param c2
      * @return
@@ -77,6 +83,7 @@ public class Charges {
     }
 
     /**
+     * Returns The Current Velocity of A Point Charge
      *
      * @return
      */
@@ -86,7 +93,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The Acceleration of A Point Charge
+     * 
      * @param c1
      * @param c2
      * @return
@@ -97,7 +105,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The New Velocity of A Point Charge
+     * 
      * @param c1
      * @param c2
      * @param t
@@ -111,7 +120,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The New Distance of A Point Charge
+     * 
      * @param c1
      * @param c2
      * @param t
@@ -120,14 +130,15 @@ public class Charges {
      */
     public static double getNewDistance(Charges c1, Charges c2, double t, double a)
     {
-        distanceOfChargeOne += (c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2));
-        distanceOfChargeTwo += (c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2));
+        distanceOfChargeOne += Math.abs((c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
+        distanceOfChargeTwo += Math.abs((c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
         distance += distanceOfChargeOne + distanceOfChargeTwo;
         return distance;
     }
 
     /**
-     *
+     * Returns The Present Distance of A Point Charge
+     * 
      * @return
      */
     public static double getDistance()
@@ -136,7 +147,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Returns The New Distance of A Point Charge
+     * 
      * @param c1
      * @param c2
      * @param t
@@ -153,7 +165,8 @@ public class Charges {
     //Mutator Methods
 
     /**
-     *
+     * Sets The Distance Between Two Point Charges
+     * 
      * @param r
      * @return
      */
@@ -165,7 +178,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Sets The Charge of A Particular Point Charge
+     * 
      * @param c
      * @return
      */
@@ -176,7 +190,8 @@ public class Charges {
     }
 
     /**
-     *
+     * Sets The Mass of A Point Charge Based On Its Charge, and Only Protons Being Allowed
+     * 
      * @return
      */
     public double setMass()
