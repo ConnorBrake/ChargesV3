@@ -214,14 +214,13 @@ public class OutputFrame extends javax.swing.JFrame {
             c1.setMass();
             c2.setMass();
         }
+        
         distanceSearch += 1;
         time += 0.000000001;
         c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewChargeVelocity(c1, c2, time);
+        c1.getNewChargeVelocity(c1, c2, time, -1);
         c2.getNewChargeAcceleration(c1, c2);
-        c2.getNewChargeVelocity(c1, c2,time);
-        c1.getChargeDistance(c1, c2, time);
-        c2.getChargeDistance(c1, c2, time);
+        c2.getNewChargeVelocity(c1, c2,time, 1);
         //Outputs To Output Frame Components
         distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
         distancesList.add(Charges.getDistance());
@@ -230,7 +229,7 @@ public class OutputFrame extends javax.swing.JFrame {
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
         //Sets Screen Distance of Charge One
-        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time));
+        chargeOneDistanceSize = distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, -1);
         while((int)chargeOneDistanceSize == 0)
         {
             chargeOneDistanceSize *= 10;
@@ -241,7 +240,7 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         
         //Sets Screen Distance of Charge Two
-        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time));
+        chargeTwoDistanceSize = distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, 1);
         while((int)chargeTwoDistanceSize == 0)
         {
                 chargeTwoDistanceSize *= 10;
@@ -276,10 +275,11 @@ public class OutputFrame extends javax.swing.JFrame {
                 forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
                 time -= 0.000000001;
                 timeOutput.setText(Double.toString(time));
+                Charges.setChargeDistance(distancesList.get(distanceSearch));
                 
                 //Sets Screen Charge Distances
                 //Sets Screen Distance of Charge One
-                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time));
+                chargeOneDistanceSize = distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, 1);
                 while((int)chargeOneDistanceSize == 0)
                 {
                     chargeOneDistanceSize *= 10;
@@ -290,7 +290,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 }
 
                 //Sets Screen Distance of Charge Two
-                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time));
+                chargeTwoDistanceSize = distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, -1);
                 while((int)chargeTwoDistanceSize == 0)
                 {
                     chargeTwoDistanceSize *= 10;
@@ -299,7 +299,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 {
                     chargeTwoDistanceSize /= 10;
                 }
-                if(pixelChangeChargeOne < 0 || pixelChangeChargeTwo < 0)
+                if(pixelChangeChargeOne <= 0 || pixelChangeChargeTwo <= 0)
                 {
                     pixelChangeChargeOne = 14;
                     pixelChangeChargeTwo = 14;
@@ -309,11 +309,11 @@ public class OutputFrame extends javax.swing.JFrame {
                 chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
                 chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
             }
-            else
-            {
-                time = 0;
-                timeOutput.setText(Double.toString(time));
-            }
+        }
+        else
+        {
+            time = 0;
+            timeOutput.setText(Double.toString(time));
         }
     }//GEN-LAST:event_backwardsTimeActionPerformed
 
