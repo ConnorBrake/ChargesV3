@@ -266,7 +266,7 @@ public class OutputFrame extends javax.swing.JFrame {
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
         // TODO add your handling code here:
         //Handles Number Outputs Backwards In Time
-        if(time > 0.000000001)
+        if(time > 0)
         {
             if(distanceSearch > 0)
             {
@@ -311,12 +311,13 @@ public class OutputFrame extends javax.swing.JFrame {
                 pixelChangeChargeTwo -= (int)chargeTwoDistanceSize;
                 chargeOne.setLocation(-10 * pixelChangeChargeOne + 145, 215);
                 chargeTwo.setLocation(10 * pixelChangeChargeTwo + 440, 215); 
+                if(time <= 9E-10)
+                {
+                    time = 0;
+                    timeOutput.setText(Double.toString(time));
+                    distancesList.remove(distanceSearch);
+                }
             }
-        }
-        else
-        {
-            time = 0;
-            timeOutput.setText(Double.toString(time));
         }
     }//GEN-LAST:event_backwardsTimeActionPerformed
 
