@@ -224,7 +224,6 @@ public class OutputFrame extends javax.swing.JFrame {
         c2.getNewChargeAcceleration(c1, c2);
         c2.getNewChargeVelocity(c1, c2,time, 1);
         
-        System.out.println(c2.getNewChargeAcceleration(c1, c2));
         //Outputs To Output Frame Components
         distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
         distancesList.add(Charges.getDistance());
@@ -267,7 +266,7 @@ public class OutputFrame extends javax.swing.JFrame {
     private void backwardsTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backwardsTimeActionPerformed
         // TODO add your handling code here:
         //Handles Number Outputs Backwards In Time
-        if(time > 0)
+        if(time > 0.000000001)
         {
             if(distanceSearch > 0)
             {
@@ -294,7 +293,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 }
 
                 //Sets Screen Distance of Charge Two
-                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, c2.getNewChargeAcceleration(c1, c2), -1));
+                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, c2.getNewChargeAcceleration(c1, c2), 1));
                 while((int)chargeTwoDistanceSize == 0)
                 {
                     chargeTwoDistanceSize *= 10;
