@@ -41,16 +41,6 @@ public class Charges {
     //Accessor Methods
 
     /**
-     * Returns The Vector Nature of A Point Charge
-     * 
-     * @return
-     */
-    public double getDirection()
-    {
-        return direction;
-    }
-
-    /**
      * Returns the Charge of A Point Charge
      *
      * @return
@@ -79,7 +69,7 @@ public class Charges {
      */
     public double getElectricForce(Charges c1, Charges c2)
     {
-        return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(distance, 2));
+        return (kValue * c1.getCharge() * c2.getCharge()) / (Math.pow(getDistance(), 2));
     }
 
     /**
@@ -115,7 +105,7 @@ public class Charges {
      */
     public double getNewChargeVelocity(Charges c1,  Charges c2, double t, double d)
     {
-        velocity = (d * (getNewChargeAcceleration(c1, c2) * t)) + getCurrentChargeVelocity();
+        velocity = d * ((getNewChargeAcceleration(c1, c2) * t) + d * getCurrentChargeVelocity());
         return velocity; 
     }
 
