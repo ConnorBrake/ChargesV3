@@ -220,19 +220,19 @@ public class OutputFrame extends javax.swing.JFrame {
         distanceSearch += 1;
         time += 0.000000001;
         c1.getNewChargeAcceleration(c1, c2);
-        c1.getNewChargeVelocity(c1, c2, time, -1);
+        c1.getNewChargeVelocity(c1, c2, -1);
         c2.getNewChargeAcceleration(c1, c2);
-        c2.getNewChargeVelocity(c1, c2,time, 1);
+        c2.getNewChargeVelocity(c1, c2, 1);
         
         //Outputs To Output Frame Components
-        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, time, 1)));
+        distanceBetweenChargesOutput.setText(Double.toString(Charges.getNewDistance(c1, c2, 1)));
         distancesList.add(Charges.getDistance());
         timeOutput.setText(Double.toString(time));
         forceOnChargeOneOutput.setText(Double.toString(c1.getElectricForce(c1, c2)));
         forceOnChargeTwoOutput.setText(Double.toString(c2.getElectricForce(c1, c2)));
         //Sets Screen Charge Distances
         //Sets Screen Distance of Charge One
-        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, c1.getNewChargeAcceleration(c1, c2), -1));
+        chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, c1.getNewChargeAcceleration(c1, c2), -1));
         while((int)chargeOneDistanceSize == 0)
         {
             chargeOneDistanceSize *= 10;
@@ -243,7 +243,7 @@ public class OutputFrame extends javax.swing.JFrame {
         }
         
         //Sets Screen Distance of Charge Two
-        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, c2.getNewChargeAcceleration(c1, c2), 1));
+        chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, c2.getNewChargeAcceleration(c1, c2), 1));
         while((int)chargeTwoDistanceSize == 0)
         {
                 chargeTwoDistanceSize *= 10;
@@ -279,10 +279,14 @@ public class OutputFrame extends javax.swing.JFrame {
                 time -= 0.000000001;
                 timeOutput.setText(Double.toString(time));
                 Charges.setChargeDistance(distancesList.get(distanceSearch));
+                c1.getNewChargeAcceleration(c1, c2);
+                c1.getNewChargeVelocity(c1, c2, 1);
+                c2.getNewChargeAcceleration(c1, c2);
+                c2.getNewChargeVelocity(c1, c2, -1);
                 
                 //Sets Screen Charge Distances
                 //Sets Screen Distance of Charge One
-                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, time, c1.getNewChargeAcceleration(c1, c2), -1));
+                chargeOneDistanceSize = Math.abs(distancesList.get(distanceSearch) - c1.getChargeDistance(c1, c2, c1.getNewChargeAcceleration(c1, c2), -1));
                 while((int)chargeOneDistanceSize == 0)
                 {
                     chargeOneDistanceSize *= 10;
@@ -293,7 +297,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 }
 
                 //Sets Screen Distance of Charge Two
-                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, time, c2.getNewChargeAcceleration(c1, c2), 1));
+                chargeTwoDistanceSize = Math.abs(distancesList.get(distanceSearch) - c2.getChargeDistance(c2, c1, c2.getNewChargeAcceleration(c1, c2), 1));
                 while((int)chargeTwoDistanceSize == 0)
                 {
                     chargeTwoDistanceSize *= 10;
@@ -305,7 +309,7 @@ public class OutputFrame extends javax.swing.JFrame {
                 if(pixelChangeChargeOne <= 0 || pixelChangeChargeTwo <= 0)
                 {
                     pixelChangeChargeOne = 14;
-                    pixelChangeChargeTwo = 14;
+                    pixelChangeChargeTwo = 13;
                 }
                 pixelChangeChargeOne -= (int)chargeOneDistanceSize;
                 pixelChangeChargeTwo -= (int)chargeTwoDistanceSize;
@@ -325,7 +329,7 @@ public class OutputFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Deletion of outputframe and creation of inputframe
         this.dispose();
-        new InputFrame().setVisible(true);
+        System.exit(0);
     }//GEN-LAST:event_stopSimulationActionPerformed
 
     private void timeOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeOutputActionPerformed
