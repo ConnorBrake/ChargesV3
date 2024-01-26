@@ -99,13 +99,12 @@ public class Charges {
      * 
      * @param c1
      * @param c2
-     * @param t
      * @param d
      * @return
      */
-    public double getNewChargeVelocity(Charges c1,  Charges c2, double t, double d)
+    public double getNewChargeVelocity(Charges c1,  Charges c2, double d)
     {
-        velocity = d * ((getNewChargeAcceleration(c1, c2) * t) + d * getCurrentChargeVelocity());
+        velocity = ((d * getNewChargeAcceleration(c1, c2)) * 0.000000001) + getCurrentChargeVelocity();
         return velocity; 
     }
 
@@ -114,14 +113,13 @@ public class Charges {
      * 
      * @param c1
      * @param c2
-     * @param t
      * @param a
      * @return
      */
-    public static double getNewDistance(Charges c1, Charges c2, double t, double a)
+    public static double getNewDistance(Charges c1, Charges c2, double a)
     {
-        distanceOfChargeOne += Math.abs((c1.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
-        distanceOfChargeTwo += Math.abs((c2.getCurrentChargeVelocity() * t) + (0.5 * a * Math.pow(t, 2)));
+        distanceOfChargeOne += Math.abs((c1.getCurrentChargeVelocity() * 0.000000001) + (0.5 * a * Math.pow(0.000000001, 2)));
+        distanceOfChargeTwo += Math.abs((c2.getCurrentChargeVelocity() * 0.000000001) + (0.5 * a * Math.pow(0.000000001, 2)));
         distance += distanceOfChargeOne + distanceOfChargeTwo;
         return distance;
     }
@@ -141,14 +139,13 @@ public class Charges {
      * 
      * @param c1
      * @param c2
-     * @param t
      * @param a
      * @param d
      * @return
      */
-    public Double getChargeDistance(Charges c1, Charges c2, double t, double a ,double d)
+    public Double getChargeDistance(Charges c1, Charges c2, double a ,double d)
     {
-        distanceOfCharge += (d * ((c2.getCurrentChargeVelocity()) * t)) + (0.5 * a * Math.pow(t, 2));
+        distanceOfCharge += (d * ((c2.getCurrentChargeVelocity()) * 0.000000001)) + (0.5 * a * Math.pow(0.000000001, 2));
         return distanceOfCharge + (initialDistance / 2);
     }
     
